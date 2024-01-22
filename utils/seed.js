@@ -1,6 +1,9 @@
 const connection = require('../config/connection');
 const { User, Thought } = require('../models');
-const { getUsers, getThoughts } = require('./dateFormat');
+const dateFormat = require ('./dateFormat');
+//const getUsers = require('./dateFormat');
+
+const { faker } = require('@faker-js/faker');
 
 connection.on('error', (err) => err);
 
@@ -24,10 +27,10 @@ connection.once('open', async () => {
   // Loop 20 times -- add users to the students array
   for (let i = 0; i < 20; i++) {
     // Get some random thought objects using a helper function that we imported from ./dataFormat
-    const thoughts = getThoughts(20);
-    const userName = getUsers();
-
-    //const github = `${first}${Math.floor(Math.random() * (99 - 18 + 1) + 18)}`;
+    const thoughts = getThoughts();
+    const userName = faker.internet.userName();
+    const email= faker.internet.email();
+    const friends= getUsers();
 
     users.push({
       userName,
@@ -35,6 +38,7 @@ connection.once('open', async () => {
       thoughts,
       friends,
     });
+  //  friends= users;
   }
 
   // Add users to the collection and await the results
