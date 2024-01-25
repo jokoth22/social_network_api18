@@ -1,8 +1,7 @@
 const connection = require('../config/connection');
 const { User, Thought } = require('../models');
 const dateFormat = require ('./dateFormat');
-//const getUsers = require('./dateFormat');
-
+const { getRandomFriends, getThoughts } = require('./test');
 const { faker } = require('@faker-js/faker');
 
 connection.on('error', (err) => err);
@@ -30,15 +29,22 @@ connection.once('open', async () => {
     const thoughts = getThoughts();
     const userName = faker.internet.userName();
     const email= faker.internet.email();
-    const friends= getUsers();
+    const friends= getRandomFriends();
+// //loop that creates thoughts --> objectID
+// for (let k=0; k<20; k++){
 
+//   thoughts.push({
+//     thoughtText: 'I like eggs!',
+//     createdAt,
+//     username: [...username],
+//   })
+// }
     users.push({
       userName,
       email,
       thoughts,
       friends,
     });
-  //  friends= users;
   }
 
   // Add users to the collection and await the results
@@ -48,7 +54,7 @@ connection.once('open', async () => {
   await Thought.collection.insertOne({
     thoughtText: 'I like eggs!',
     createdAt: 11/22/20,
-    username: [...username],
+    username: users,
   });
 
   // Log out the seed data to indicate what should appear in the database
