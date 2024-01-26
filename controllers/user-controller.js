@@ -5,7 +5,8 @@ const userController = {
   async getUsers(req, res) {
     try {
       const dbUserData = await User.find()
-        .select('-__v')
+       // .select('-__v')
+        .populate('friends');
 
       res.json(dbUserData);
     } catch (err) {

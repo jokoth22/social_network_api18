@@ -22,6 +22,7 @@ connection.once('open', async () => {
 
   // Create empty array to hold the users
   const users = [];
+  const friends = [];
 
   // Loop 20 times -- add users to the students array
   for (let i = 0; i < 20; i++) {
@@ -29,16 +30,17 @@ connection.once('open', async () => {
     const thoughts = getThoughts();
     const userName = faker.internet.userName();
     const email= faker.internet.email();
-    const friends= getRandomFriends();
-// //loop that creates thoughts --> objectID
-// for (let k=0; k<20; k++){
+   // const friends= getRandomFriends();
+   // const date= faker.date.past();
+    // //loop that creates thoughts --> objectID
+    // for (let k=0; k<20; k++){
 
-//   thoughts.push({
-//     thoughtText: 'I like eggs!',
-//     createdAt,
-//     username: [...username],
-//   })
-// }
+    //   thoughts.push({
+    //     thoughtText: thoughts,
+    //     createdAt: Date.now,
+    //     username: userName,
+    //   })
+    // }
     users.push({
       userName,
       email,
